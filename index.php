@@ -1,31 +1,29 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>ATI SPORTWEAR</title>
-    <link rel="stylesheet" href="css/estilos.css">
-</head>
+<html lang="es">
+
+<?php include "fragmentos/head.php"; ?>
+
 <body>
+    <?php include "fragmentos/header.php"; ?>
 
-<header>
-    <h1>ATI SPORTWEAR</h1>
-    <nav>
-        <a href="admin/index.php">Admin</a>
-        <a href="carrito/index.php">Carrito</a>
-    </nav>
-</header>
+    <section class="landing">
 
-<div class="contenedor">
-    <h2>Inicio</h2>
-    <p>Proyecto tienda online</p>
+        <div class="landing-contenido">
 
-    <p><a class="boton" href="admin/index.php">Entrar a admin</a></p>
-    <p><a class="boton" href="carrito/index.php">Entrar a carrito</a></p>
-</div>
+            <h1>ATI SPORTWEAR</h1>
+            <p>Discipline · Precision · Power   </p>
 
-<footer>
-    ATI SPORTWEAR
-</footer>
+            <a href="catalogo/catalogo.php" class="btn btn-dark btn-lg">
+                Ver Catálogo
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <?php include "fragmentos/footer.php"; ?>
 
 </body>
+
 </html>
