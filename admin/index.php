@@ -1,40 +1,22 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Admin</title>
-    <link rel="stylesheet" href="../css/estilos.css">
-</head>
+<html lang="es">
+<?php include "../fragmentos/head.php"; ?>
+
 <body>
 
-<header>
-    <h1>ATI SPORTWEAR - Admin</h1>
-    <nav>
-        <a href="index.php">Inicio</a>
-        <a href="productos.php">Productos</a>
-        <a href="agregar_producto.php">Agregar producto</a>
-        <a href="pedidos.php">Pedidos</a>
-        <a href="../carrito/index.php">Carrito</a>
-    </nav>
-</header>
+    <?php include "../fragmentos/header.php"; ?>
 
-<div class="contenedor">
-    <h2>Panel de administracion</h2>
+    <div class="contenedor">
+        <a class="boton" href="/sc502-vn-proyecto2026-g-4-ati-sportwear/usuario/editar.php">Editar Perfil (Demo)</a>
+        <h2>Inicio como Administrador</h2>
+        <p>ATI SPORTWEAR</p>
 
-    <p>Modulo para ver productos y pedidos.</p>
+        <p><a class="boton" href="/sc502-vn-proyecto2026-g-4-ati-sportwear/admin/admin.php">Entrar a Modo Admin</a></p>
+        <p><a class="boton" href="/sc502-vn-proyecto2026-g-4-ati-sportwear/index.php">Entrar a Modo Público</a></p>
+    </div>
 
-    <ul>
-        <li><a class="boton" href="productos.php">Ir a productos</a></li>
-        <br>
-        <li><a class="boton" href="agregar_producto.php">Agregar producto</a></li>
-        <br>
-        <li><a class="boton" href="pedidos.php">Ver pedidos</a></li>
-    </ul>
-</div>
-
-<footer>
-    ATI SPORTWEAR
-</footer>
+    <?php include "../fragmentos/footer.php"; ?>
 
 </body>
+
 </html>

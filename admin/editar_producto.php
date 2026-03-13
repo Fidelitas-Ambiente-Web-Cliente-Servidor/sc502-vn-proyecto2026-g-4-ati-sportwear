@@ -1,52 +1,43 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Editar producto</title>
-    <link rel="stylesheet" href="../css/estilos.css">
-</head>
+<html lang="es">
+<?php include "../fragmentos/head.php"; ?>
+
 <body>
 
-<header>
-    <h1>Editar producto</h1>
-    <nav>
-        <a href="index.php">Inicio</a>
-        <a href="productos.php">Productos</a>
-        <a href="pedidos.php">Pedidos</a>
-    </nav>
-</header>
+    <?php include "../fragmentos/header.php"; ?>
 
-<div class="contenedor">
-    <h2>Editar producto</h2>
+    <div class="contenedor">
+        <a class="boton" href="productos.php">Volver a Productos</a>
 
-    <form class="formulario">
-        <label>Nombre</label>
-        <input type="text" value="Rashguard Negra">
+        <h2>Editar producto</h2>
 
-        <label>Descripcion</label>
-        <textarea>Rashguard deportiva</textarea>
+        <form class="formulario">
+            <label>Nombre</label>
+            <input type="text" value="Rashguard Negra">
 
-        <label>Categoria</label>
-        <select>
-            <option selected>Camisetas</option>
-            <option>Pantalonetas</option>
-            <option>Gorras</option>
-            <option>Accesorios</option>
-        </select>
+            <label>Descripcion</label>
+            <textarea>Rashguard deportiva</textarea>
 
-        <label>Precio</label>
-        <input type="number" value="18000">
+            <label>Categoria</label>
+            <select>
+                <option selected>Camisetas</option>
+                <option>Pantalonetas</option>
+                <option>Gorras</option>
+                <option>Accesorios</option>
+            </select>
 
-        <label>Stock</label>
-        <input type="number" value="12">
+            <label>Precio</label>
+            <input type="number" value="18000">
 
-        <button type="submit">Actualizar</button>
-    </form>
-</div>
+            <label>Stock</label>
+            <input type="number" value="12">
 
-<footer>
-    ATI SPORTWEAR
-</footer>
+            <button type="submit">Actualizar</button>
+        </form>
+    </div>
+
+    <?php include "../fragmentos/footer.php"; ?>
 
 </body>
+
 </html>

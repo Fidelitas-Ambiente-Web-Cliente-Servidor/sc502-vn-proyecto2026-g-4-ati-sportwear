@@ -1,55 +1,51 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Agregar producto</title>
-    <link rel="stylesheet" href="../css/estilos.css">
-</head>
+<html lang="es">
+<?php include "../fragmentos/head.php"; ?>
+
 <body>
 
-<header>
-    <h1>Agregar producto</h1>
-    <nav>
-        <a href="index.php">Inicio</a>
-        <a href="productos.php">Productos</a>
-        <a href="pedidos.php">Pedidos</a>
-    </nav>
-</header>
+    <?php include "../fragmentos/header.php"; ?>
 
-<div class="contenedor">
-    <h2>Agregar producto</h2>
+    <div class="contenedor">
+        <ul class="listaPanel">
+            <li><a class="boton" href="admin.php">Volver a Modo Admin</a></li>
+            <br>
+            <li><a class="boton" href="productos.php">Volver a Productos</a></li>
+            <br>
+        </ul>
 
-    <form class="formulario">
-        <label>Nombre</label>
-        <input type="text">
+        <h2>Agregar producto</h2>
 
-        <label>Descripcion</label>
-        <textarea></textarea>
+        <form class="formulario">
+            <label>Nombre</label>
+            <input type="text">
 
-        <label>Categoria</label>
-        <select>
-            <option>Camisetas</option>
-            <option>Pantalonetas</option>
-            <option>Gorras</option>
-            <option>Accesorios</option>
-        </select>
+            <label>Descripcion</label>
+            <textarea></textarea>
 
-        <label>Precio</label>
-        <input type="number">
+            <label>Categoria</label>
+            <select>
+                <option>Camisetas</option>
+                <option>Pantalonetas</option>
+                <option>Gorras</option>
+                <option>Accesorios</option>
+            </select>
 
-        <label>Stock</label>
-        <input type="number">
+            <label>Precio</label>
+            <input type="number">
 
-        <label>Imagen</label>
-        <input type="file">
+            <label>Stock</label>
+            <input type="number">
 
-        <button type="submit">Guardar</button>
-    </form>
-</div>
+            <label>Imagen</label>
+            <input type="file">
 
-<footer>
-    ATI SPORTWEAR
-</footer>
+            <button type="submit">Guardar</button>
+        </form>
+    </div>
+
+    <?php include "../fragmentos/footer.php"; ?>
 
 </body>
+
 </html>
