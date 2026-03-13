@@ -39,12 +39,35 @@
 
         <div class="row g-4">
 
-            <!-- PRODUCTO 1 -->
+            <!-- PRODUCTOS -->
+
             <div class="col-md-4 col-lg-3">
 
                 <div class="producto">
 
-                    <img src="../imagenes/productos/camiseta1.jpg" alt="Camiseta deportiva">
+                    <img src="../img/camisa_deportiva1.jpeg" alt="Camiseta deportiva">
+
+                    <h5>Camiseta deportiva</h5>
+
+                    <p class="precio">₡12 000</p>
+
+                    <div class="d-grid gap-2">
+
+                        <button class="btn btn-outline-dark btn-sm">Ver detalle</button>
+                        <button class="btn btn-dark btn-sm">Agregar al carrito</button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4 col-lg-3">
+
+                <div class="producto">
+
+                    <img src="../img/camisa_deportiva2.jpg" alt="Camiseta deportiva">
 
                     <h5>Camiseta deportiva</h5>
 
@@ -67,11 +90,11 @@
 
                 <div class="producto">
 
-                    <img src="../imagenes/productos/pantalon1.jpg" alt="Pantalón deportivo">
+                    <img src="../img/pantaloneta_deportiva.jpeg" alt="pantaloneta deportivo">
 
-                    <h5>Pantalón deportivo</h5>
+                    <h5>pantaloneta deportivo</h5>
 
-                    <p class="precio">₡18 000</p>
+                    <p class="precio">₡10 000</p>
 
                     <div class="d-grid gap-2">
 
@@ -90,9 +113,31 @@
 
                 <div class="producto">
 
-                    <img src="../imagenes/productos/gorra1.jpg" alt="Gorra deportiva">
+                    <img src="../img/gorra1.jpeg" alt="Gorra ">
 
-                    <h5>Gorra deportiva</h5>
+                    <h5>Gorra </h5>
+
+                    <p class="precio">₡8 000</p>
+
+                    <div class="d-grid gap-2">
+
+                        <button class="btn btn-outline-dark btn-sm">Ver detalle</button>
+                        <button class="btn btn-dark btn-sm">Agregar al carrito</button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+             <div class="col-md-4 col-lg-3">
+
+                <div class="producto">
+
+                    <img src="../img/gorra2.jpeg" alt="Gorra ">
+
+                    <h5>Gorra </h5>
 
                     <p class="precio">₡8 000</p>
 
@@ -113,7 +158,7 @@
 
                 <div class="producto">
 
-                    <img src="../imagenes/productos/camiseta1.jpg" alt="Camiseta">
+                    <img src="../img/camisa_training1.jpeg" alt="Camiseta">
 
                     <h5>Camiseta training</h5>
 
@@ -129,6 +174,50 @@
                 </div>
 
             </div>
+
+            <div class="col-md-4 col-lg-3">
+
+                <div class="producto">
+
+                    <img src="../img/camisa_training2.jpeg" alt="Camiseta training">
+
+                    <h5>Camiseta training</h5>
+
+                    <p class="precio">₡15 000</p>
+
+                    <div class="d-grid gap-2">
+
+                        <button class="btn btn-outline-dark btn-sm">Ver detalle</button>
+                        <button class="btn btn-dark btn-sm">Agregar al carrito</button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4 col-lg-3">
+
+                <div class="producto">
+
+                    <img src="../img/camisa_training3.jpeg" alt="Camiseta training">
+
+                    <h5>Camiseta training</h5>
+
+                    <p class="precio">₡15 000</p>
+
+                    <div class="d-grid gap-2">
+
+                        <button class="btn btn-outline-dark btn-sm">Ver detalle</button>
+                        <button class="btn btn-dark btn-sm">Agregar al carrito</button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
 
         </div>
 
