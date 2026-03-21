@@ -1,29 +1,22 @@
-<!DOCTYPE html>
-<html lang="es">
+<?php
+session_start();
 
-<?php include "fragmentos/head.php"; ?>
+/*require_once 'app/controllers/UserController.php';*/
 
-<body>
-    <?php include "fragmentos/header.php"; ?>
+$page = $_GET['page'] ?? 'home';
 
-    <section class="landing">
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $option = $_POST['option'] ?? '';
 
-        <div class="landing-contenido">
+    switch ($option) {
+        
+    }
+}
 
-            <h1>ATI SPORTWEAR</h1>
-            <p>Discipline · Precision · Power   </p>
+// Switch para mostrar vistas que no vienen de POST.
+switch ($page) {
 
-            <a href="catalogo/catalogo.php" class="btn btn-dark btn-lg">
-                Ver Catálogo
-            </a>
-
-        </div>
-
-    </section>
-
-
-    <?php include "fragmentos/footer.php"; ?>
-
-</body>
-
-</html>
+    default:
+        require_once './app/views/index.php';
+        break;
+}
