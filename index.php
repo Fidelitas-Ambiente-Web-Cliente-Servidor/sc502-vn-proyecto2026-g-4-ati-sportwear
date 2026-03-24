@@ -1,22 +1,28 @@
 <?php
 session_start();
 
-/*require_once 'app/controllers/UserController.php';*/
-
 $page = $_GET['page'] ?? 'home';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $option = $_POST['option'] ?? '';
 
-    switch ($option) {
-        
-    }
 }
 
-// Switch para mostrar vistas que no vienen de POST.
 switch ($page) {
 
+    case 'home':
+        require_once './app/controllers/HomeController.php';
+        $controller = new HomeController();
+        $controller->index();
+        break;
+
+    case 'catalogo':
+        require_once './app/controllers/CatalogoController.php';
+        $controller = new CatalogoController();
+        $controller->index();
+        break;
+
     default:
-        require_once './app/views/index.php';
+        echo "Página no encontrada";
         break;
 }
