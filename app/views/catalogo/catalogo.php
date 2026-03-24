@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<?php include "../fragmentos/head.php"; ?>
+<?php require_once __DIR__ . '/../fragmentos/head.php'; ?>
 
 <body>
 
     <!--header-->
-    <?php include "../fragmentos/header.php"; ?>
+    <?php require_once __DIR__ . '/../fragmentos/header.php'; ?>
 
     <!-- BUSCADOR Y FILTROS -->
     <section class="container my-4">
@@ -225,7 +225,7 @@
 
 
     <!-- FOOTER -->
-    <?php include "../fragmentos/footer.php"; ?>
+    <?php require_once __DIR__ . '/../fragmentos/footer.php'; ?>
 
 
 </body>

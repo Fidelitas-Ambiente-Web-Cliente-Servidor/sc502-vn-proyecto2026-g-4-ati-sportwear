@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<?php include __DIR__ . "/fragmentos/head.php"; ?>
+<?php require_once __DIR__ . "/fragmentos/head.php"; ?>
 
 <body>
-    <?php include __DIR__ . "/fragmentos/header.php"; ?>
+    <?php require_once __DIR__ . "/fragmentos/header.php"; ?>
 
     <section class="landing">
 
         <div class="landing-contenido">
 
             <h1>ATI SPORTWEAR</h1>
-            <p>Discipline · Precision · Power   </p>
+            <p>Discipline · Precision · Power</p>
 
-            <a href="catalogo/catalogo.php" class="btn btn-dark btn-lg">
+            <a href="index.php?page=catalogo" class="btn btn-dark btn-lg">
                 Ver Catálogo
             </a>
 
@@ -21,8 +21,7 @@
 
     </section>
 
-
-    <?php include __DIR__ . "/fragmentos/footer.php"; ?>
+    <?php require_once __DIR__ . "/fragmentos/footer.php"; ?>
 
 </body>
 
