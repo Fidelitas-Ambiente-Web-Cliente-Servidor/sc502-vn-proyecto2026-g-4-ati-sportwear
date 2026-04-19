@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
 
-    <link rel="stylesheet" href="/sc502-vn-proyecto2026-g-4-ati-sportwear/public/css/style.css">
+    <link rel="stylesheet" href="public/css/style.css">
 
-    <script src="/sc502-vn-proyecto2026-g-4-ati-sportwear/public/js/app.js" defer></script>
+    <script src="https://code.jquery.com/jquery-4.0.0.js"
+        integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
 </head>
