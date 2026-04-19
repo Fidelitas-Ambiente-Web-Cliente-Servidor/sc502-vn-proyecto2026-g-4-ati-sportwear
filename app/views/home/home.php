@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<?php require_once __DIR__ . "/fragmentos/head.php"; ?>
+<?php require_once __DIR__ . "/../fragments/head.php"; ?>
 
 <body>
-    <?php require_once __DIR__ . "/fragmentos/header.php"; ?>
+    <?php require_once __DIR__ . "/../fragments/header.php"; ?>
 
     <section class="landing">
 
@@ -21,7 +21,7 @@
 
     </section>
 
-    <?php require_once __DIR__ . "/fragmentos/footer.php"; ?>
+    <?php require_once __DIR__ . "/../fragments/footer.php"; ?>
 
 </body>
 

@@ -1,12 +1,4 @@
 -- ============================================
--- BASE DE DATOS: ATI SPORTWEAR
--- ============================================
-
-DROP DATABASE IF EXISTS ati_sportwear;
-CREATE DATABASE ati_sportwear CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE ati_sportwear;
-
--- ============================================
 -- TABLA: roles
 -- ============================================
 CREATE TABLE roles (
