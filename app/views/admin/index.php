@@ -1,21 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
-<?php include "../fragmentos/head.php"; ?>
+
+<?php require_once './app/views/fragments/head.php'; ?>
 
 <body>
 
-    <?php include "../fragmentos/header.php"; ?>
+    <?php require_once './app/views/fragments/header.php'; ?>
 
-    <div class="contenedor">
-        <a class="boton" href="/sc502-vn-proyecto2026-g-4-ati-sportwear/usuario/editar.php">Editar Perfil (Demo)</a>
-        <h2>Inicio como Administrador</h2>
-        <p>ATI SPORTWEAR</p>
+    <section class="container my-5">
+        <h1>Panel de Administración</h1>
+        <p>Bienvenido al módulo admin de ATI Sportwear.</p>
+    </section>
 
-        <p><a class="boton" href="/sc502-vn-proyecto2026-g-4-ati-sportwear/admin/admin.php">Entrar a Modo Admin</a></p>
-        <p><a class="boton" href="/sc502-vn-proyecto2026-g-4-ati-sportwear/index.php">Entrar a Modo Público</a></p>
-    </div>
-
-    <?php include "../fragmentos/footer.php"; ?>
+    <?php require_once './app/views/fragments/footer.php'; ?>
 
 </body>
 

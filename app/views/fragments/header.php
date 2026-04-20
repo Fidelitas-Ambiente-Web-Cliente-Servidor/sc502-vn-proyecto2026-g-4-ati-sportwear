@@ -23,7 +23,7 @@
                 <?php if (isset($_SESSION['user'])): ?>
 
                     <?php if ($_SESSION['user']['rol'] == 'admin'): ?>
-                        <a href="index.php?page=admin">Admin</a>
+                        <a href="index.php?page=admin">Panel Admin</a>
                     <?php endif; ?>
 
                     <span>

@@ -8,15 +8,15 @@
 
     <section class="landing">
 
-        <div class="landing-contenido">
+        <div class="landing-img"></div>
 
+        <div class="landing-contenido">
             <h1>ATI SPORTWEAR</h1>
             <p>Discipline · Precision · Power</p>
 
             <a href="index.php?page=catalogo" class="btn btn-dark btn-lg">
                 Ver Catálogo
             </a>
-
         </div>
 
     </section>
