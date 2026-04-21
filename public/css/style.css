@@ -63,6 +63,8 @@ nav a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    animation: aparecerLanding 1.5s ease-out;
 }
 
 .landing::before {
@@ -112,13 +114,6 @@ nav a:hover {
         opacity: 1;
         transform: scale(1);
     }
-}
-
-
-.lading-contenido {
-    background: rgba(0, 0, 0, 0.4);
-    padding: 40px;
-    border-radius: 10px;
 }
 
 .landing h1 {
@@ -210,4 +205,21 @@ table td {
 .listaPanel {
     list-style: none;
     padding: 0;
+}
+
+.listaPanel a {
+    display: block;
+    padding: 10px 12px;
+    border-radius: 6px;
+    color: white;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.listaPanel a:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.listaPanel li {
+    margin-bottom: 10px;
 }
