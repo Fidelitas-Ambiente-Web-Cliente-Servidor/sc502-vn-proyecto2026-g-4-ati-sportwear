@@ -6,7 +6,7 @@
 
             <div class="logo d-flex align-items-center gap-2">
                 <a href="index.php?page=home">
-                    <img src="public/img/ati-negro.png" height="40">
+                    <img src="public/img/ati_negro.png" height="40">
                     <strong>ATI SPORTWEAR</strong>
                 </a>
             </div>

@@ -1,4 +1,18 @@
 -- ============================================
+-- RESET COMPLETO
+-- ============================================
+SET FOREIGN_KEY_CHECKS = 0;
+ 
+DROP TABLE IF EXISTS pedido_detalle;
+DROP TABLE IF EXISTS pedidos;
+DROP TABLE IF EXISTS productos;
+DROP TABLE IF EXISTS categorias;
+DROP TABLE IF EXISTS usuarios;
+DROP TABLE IF EXISTS roles;
+ 
+SET FOREIGN_KEY_CHECKS = 1;
+ 
+-- ============================================
 -- TABLA: roles
 -- ============================================
 CREATE TABLE roles (
@@ -6,7 +20,7 @@ CREATE TABLE roles (
     nombre VARCHAR(50) NOT NULL UNIQUE,
     descripcion VARCHAR(150) NULL
 );
-
+ 
 -- ============================================
 -- TABLA: usuarios
 -- ============================================
@@ -21,7 +35,7 @@ CREATE TABLE usuarios (
     fecha_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (id_rol) REFERENCES roles(id_rol)
 );
-
+ 
 -- ============================================
 -- TABLA: categorias
 -- ============================================
@@ -30,7 +44,7 @@ CREATE TABLE categorias (
     nombre VARCHAR(100) NOT NULL UNIQUE,
     descripcion TEXT NULL
 );
-
+ 
 -- ============================================
 -- TABLA: productos
 -- ============================================
@@ -46,7 +60,7 @@ CREATE TABLE productos (
     fecha_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (id_categoria) REFERENCES categorias(id_categoria)
 );
-
+ 
 -- ============================================
 -- TABLA: pedidos
 -- ============================================
@@ -58,7 +72,7 @@ CREATE TABLE pedidos (
     estado ENUM('enviado', 'procesando', 'entregado', 'cancelado') NOT NULL DEFAULT 'enviado',
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario)
 );
-
+ 
 -- ============================================
 -- TABLA: pedido_detalle
 -- ============================================
@@ -72,59 +86,55 @@ CREATE TABLE pedido_detalle (
     FOREIGN KEY (id_pedido) REFERENCES pedidos(id_pedido),
     FOREIGN KEY (id_producto) REFERENCES productos(id_producto)
 );
-
+ 
 -- ============================================
--- INSERTS INICIALES: roles
+-- INSERTS: roles
 -- ============================================
 INSERT INTO roles (nombre, descripcion) VALUES
 ('admin', 'Administrador del sistema'),
 ('cliente', 'Cliente de la tienda');
-
+ 
 -- ============================================
--- INSERTS INICIALES: usuarios
--- NOTA:
--- Estas contraseñas son placeholders.
--- Luego debes reemplazarlas por hashes reales
--- generados con password_hash() desde PHP.
+-- INSERTS: usuarios (con hash real)
 -- ============================================
 INSERT INTO usuarios (nombre, apellidos, email, password, id_rol, estado) VALUES
-('Admin', 'Principal', 'admin@ati.com', '$2y$12$6uGJqSejYJqzSqjhuc5YjeUbBdKLQSZVIyHqt0VYRRBeQ0dSI0r7W', 1, 'activo'),
-('Juan', 'Pérez', 'juan@gmail.com', '$2y$12$CEDV4KCIncfEvLpH33zLRu8Pa.jdMBFJxJwIZmXjct46bCDCM.PiC', 2, 'activo'),
-('María', 'López', 'maria@gmail.com', '$2y$12$Hyn8NwWoMQFV5VcdlUT/Xuhs7yMiLVv6IKjfmY7jqyYhRkjOpm9/W', 2, 'activo');
-
+('Admin', 'Principal', 'admin@ati.com', '$2y$10$SuHuZtNLovaDOBXmtQPxmOBFaE2b.52Kjfx2GWmyzxjOExjCNTplO', 1, 'activo'),
+('Juan', 'Pérez', 'juan@gmail.com', '$2y$10$1c9CQYntgI8JZ24x4fWoauYrb9jn27GB6WQurE0v.Cy70u4g86hGC', 2, 'activo'),
+('María', 'López', 'maria@gmail.com', '$2y$10$RNlRtukrc7ES2cv8cDomK.LFMqO2Vupr0gOQKR57.M6.CY/A1FG4C', 2, 'activo');
+ 
 -- ============================================
--- INSERTS INICIALES: categorias
+-- INSERTS: categorias
 -- ============================================
 INSERT INTO categorias (nombre, descripcion) VALUES
-('Camisetas', 'Prendas superiores deportivas'),
-('Pantalones', 'Pantalones deportivos y casuales'),
-('Shorts', 'Shorts y pantalonetas deportivas'),
-('Accesorios', 'Accesorios deportivos'),
-('Calzado', 'Zapatos y tenis deportivos');
-
+('Rashguards', 'Camiseta técnica de alto rendimiento'),
+('Rashguards Personalizados', 'Rashguards personalizados'),
+('Pantalonetas', 'Shorts para entrenamiento'),
+('Gorras', 'Accesorios deportivos');
+ 
 -- ============================================
--- INSERTS INICIALES: productos
+-- INSERTS: productos
 -- ============================================
 INSERT INTO productos (nombre, descripcion, precio, cantidad, imagen, id_categoria, estado) VALUES
-('Camiseta Nike Dri-FIT', 'Camiseta deportiva liviana para entrenamiento', 18500.00, 10, 'camiseta_nike_drifit.jpg', 1, 'activo'),
-('Camiseta Adidas Run', 'Camiseta transpirable para correr', 19900.00, 8, 'camiseta_adidas_run.jpg', 1, 'activo'),
-('Pantalón Under Armour', 'Pantalón deportivo cómodo para gimnasio', 27500.00, 6, 'pantalon_underarmour.jpg', 2, 'activo'),
-('Short Puma Active', 'Short deportivo de secado rápido', 14900.00, 12, 'short_puma_active.jpg', 3, 'activo'),
-('Gorra Nike Club', 'Gorra ajustable deportiva', 9900.00, 15, 'gorra_nike_club.jpg', 4, 'activo'),
-('Tennis Reebok Flex', 'Calzado deportivo para entrenamiento', 38900.00, 5, 'tennis_reebok_flex.jpg', 5, 'activo'),
-('Short Básico Negro', 'Short deportivo básico color negro', 12500.00, 0, 'short_basico_negro.jpg', 3, 'agotado');
-
+('Rashguard ATI', 'Rashguard liviano para entrenamiento.', 18500.00, 10, 'rashguard_ati.jpeg', 1, 'activo'),
+('Rashguard JungleMat', 'Rashguard del partner JungleMat.', 19900.00, 8, 'rashguard_junglemat.jpg', 1, 'activo'),
+('Rashguard Personalizado 1', 'Rashguard morado/blanco.', 22500.00, 6, 'rashguard_personal1.jpeg', 2, 'activo'),
+('Rashguard Personalizado 2', 'Rashguard azul/blanco.', 22500.00, 3, 'rashguard_personal2.jpeg', 2, 'activo'),
+('Rashguard Personalizado 3', 'Rashguard negro/blanco.', 22500.00, 1, 'rashguard_personal3.jpeg', 2, 'activo'),
+('Pantaloneta ATI', 'Pantaloneta para entrenamiento.', 17900.00, 5, 'pantaloneta.jpeg', 3, 'activo'),
+('Gorra ATI Verde', 'Gorra color verde oliva.', 12500.00, 0, 'gorra1.jpeg', 4, 'agotado'),
+('Gorra ATI Beige', 'Gorra color beige.', 12500.00, 3, 'gorra2.jpeg', 4, 'activo');
+ 
 -- ============================================
--- INSERTS INICIALES: pedidos
+-- INSERTS: pedidos (CORREGIDOS)
 -- ============================================
 INSERT INTO pedidos (id_usuario, fecha, total, estado) VALUES
-(2, NOW(), 38400.00, 'enviado'),
+(2, NOW(), 63500.00, 'enviado'),
 (3, NOW(), 19900.00, 'procesando');
-
+ 
 -- ============================================
--- INSERTS INICIALES: pedido_detalle
+-- INSERTS: pedido_detalle (CORREGIDOS)
 -- ============================================
 INSERT INTO pedido_detalle (id_pedido, id_producto, cantidad, precio_unitario, subtotal) VALUES
 (1, 1, 1, 18500.00, 18500.00),
-(1, 5, 2, 9900.00, 19800.00),
+(1, 5, 2, 22500.00, 45000.00),
 (2, 2, 1, 19900.00, 19900.00);
