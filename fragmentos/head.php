@@ -9,5 +9,5 @@
 
     <link rel="stylesheet" href="/sc502-vn-proyecto2026-g-4-ati-sportwear/css/style.css">
 
-    <script src="../js/app.js" defer></script>
+    <script src="/sc502-vn-proyecto2026-g-4-ati-sportwear/js/app.js" defer></script>
 </head>

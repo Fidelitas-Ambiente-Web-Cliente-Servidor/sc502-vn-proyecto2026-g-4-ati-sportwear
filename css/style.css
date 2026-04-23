@@ -181,3 +181,115 @@ table td {
     list-style: none;
     padding: 0;
 }
+
+.catalog-feedback {
+    margin-bottom: 16px;
+}
+
+.catalog-feedback.is-visible {
+    display: block;
+}
+
+.catalog-feedback.visually-hidden {
+    display: none !important;
+}
+
+.catalog-empty {
+    padding: 24px;
+    border: 1px dashed gray;
+    text-align: center;
+}
+
+.producto .categoria {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.producto .estado {
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 4px 8px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 999px;
+    text-transform: uppercase;
+}
+
+.producto .estado-activo {
+    background: #e9f7ef;
+    color: #1f6f43;
+}
+
+.producto .estado-agotado {
+    background: #fdecec;
+    color: #9f1d1d;
+}
+
+.producto .acciones {
+    margin-top: auto;
+}
+
+.producto button:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.catalog-filter.is-active {
+    background: black;
+    color: white;
+}
+
+.product-modal[hidden] {
+    display: none !important;
+}
+
+.product-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1050;
+    background: rgba(0, 0, 0, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+}
+
+.product-modal__dialog {
+    width: min(900px, 100%);
+    max-height: calc(100vh - 32px);
+    overflow-y: auto;
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+}
+
+.product-modal__close {
+    border: 1px solid black;
+    background: white;
+    color: black;
+    padding: 6px 10px;
+}
+
+.product-modal__image {
+    width: 100%;
+    border: 1px solid #ddd;
+    object-fit: cover;
+}
+
+.product-modal__price {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.product-modal__stock {
+    font-weight: 600;
+}
+
+@media (max-width: 767px) {
+    .product-modal__dialog {
+        padding: 18px;
+    }
+}
