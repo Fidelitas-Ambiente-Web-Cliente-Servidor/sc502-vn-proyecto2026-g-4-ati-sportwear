@@ -127,85 +127,6 @@ class UserController
         exit;
     }
 
-    public function getUsersJson()
-    {
-        header('Content-Type: application/json');
-
-        $users = $this->model->getAllAdmin();
-
-        echo json_encode([
-            'response' => '00',
-            'data' => $users,
-            'roles' => $this->model->getRoles()
-        ]);
-        exit;
-    }
-
-    public function getUserDetailJson()
-    {
-        header('Content-Type: application/json');
-
-        $idUsuario = intval($_POST['id_usuario'] ?? 0);
-
-        if ($idUsuario <= 0) {
-            echo json_encode([
-                'response' => '01',
-                'message' => 'Usuario inválido'
-            ]);
-            exit;
-        }
-
-        $user = $this->model->getById($idUsuario);
-
-        if (!$user) {
-            echo json_encode([
-                'response' => '01',
-                'message' => 'Usuario no encontrado'
-            ]);
-            exit;
-        }
-
-        echo json_encode([
-            'response' => '00',
-            'user' => $user,
-            'roles' => $this->model->getRoles()
-        ]);
-        exit;
-    }
-
-    public function updateUser()
-    {
-        header('Content-Type: application/json');
-
-        $idUsuario = intval($_POST['id_usuario'] ?? 0);
-        $nombre = trim($_POST['nombre'] ?? '');
-        $apellidos = trim($_POST['apellidos'] ?? '');
-        $email = trim($_POST['email'] ?? '');
-
-        if ($idUsuario <= 0 || $nombre === '' || $apellidos === '' || $email === '') {
-            echo json_encode([
-                'response' => '01',
-                'message' => 'Debe completar todos los campos'
-            ]);
-            exit;
-        }
-
-        $result = $this->model->updateAdmin($idUsuario, $nombre, $apellidos, $email);
-
-        if ($result) {
-            echo json_encode([
-                'response' => '00',
-                'message' => 'Usuario actualizado correctamente'
-            ]);
-        } else {
-            echo json_encode([
-                'response' => '01',
-                'message' => 'No se pudo actualizar el usuario'
-            ]);
-        }
-
-        exit;
-    }
 
     public function changeRole()
     {
@@ -265,6 +186,140 @@ class UserController
             echo json_encode([
                 'response' => '01',
                 'message' => 'No se pudo actualizar el estado'
+            ]);
+        }
+
+        exit;
+    }
+
+    public function getUsersJson()
+    {
+        $result = $this->model->getAllAdmin();
+
+        $users = [];
+
+        while ($row = $result->fetch_assoc()) {
+            $users[] = $row;
+        }
+
+        echo json_encode([
+            'response' => '00',
+            'data' => $users
+        ]);
+        exit;
+    }
+
+    public function getUserDetailJson()
+    {
+        $id = $_GET['id'] ?? 0;
+
+        $user = $this->model->getById($id);
+
+        echo json_encode($user);
+        exit;
+    }
+
+    public function createUser()
+    {
+        $nombre = trim($_POST['nombre'] ?? '');
+        $apellidos = trim($_POST['apellidos'] ?? '');
+        $email = trim($_POST['email'] ?? '');
+        $password = trim($_POST['password'] ?? '');
+        $idRol = $_POST['id_rol'] ?? 0;
+        $estado = $_POST['estado'] ?? 'activo';
+
+        if ($nombre == '' || $apellidos == '' || $email == '' || $password == '' || $idRol == 0) {
+            echo json_encode([
+                'response' => '01',
+                'message' => 'Debe completar todos los campos'
+            ]);
+            exit;
+        }
+
+        if ($this->model->emailExists($email)) {
+            echo json_encode([
+                'response' => '01',
+                'message' => 'El correo ya está registrado'
+            ]);
+            exit;
+        }
+
+        $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+
+        $result = $this->model->createAdmin($nombre, $apellidos, $email, $passwordHash, $idRol, $estado);
+
+        if ($result) {
+            echo json_encode([
+                'response' => '00',
+                'message' => 'Usuario creado correctamente'
+            ]);
+        } else {
+            echo json_encode([
+                'response' => '01',
+                'message' => 'No se pudo crear el usuario'
+            ]);
+        }
+
+        exit;
+    }
+
+    public function updateUser()
+    {
+        $id = $_POST['id_usuario'] ?? 0;
+        $nombre = trim($_POST['nombre'] ?? '');
+        $apellidos = trim($_POST['apellidos'] ?? '');
+        $email = trim($_POST['email'] ?? '');
+        $idRol = $_POST['id_rol'] ?? 0;
+        $estado = $_POST['estado'] ?? 'activo';
+
+        if ($id == 0 || $nombre == '' || $apellidos == '' || $email == '' || $idRol == 0) {
+            echo json_encode([
+                'response' => '01',
+                'message' => 'Debe completar todos los campos'
+            ]);
+            exit;
+        }
+
+        $result = $this->model->updateAdmin($id, $nombre, $apellidos, $email, $idRol, $estado);
+
+        if ($result) {
+            echo json_encode([
+                'response' => '00',
+                'message' => 'Usuario actualizado correctamente'
+            ]);
+        } else {
+            echo json_encode([
+                'response' => '01',
+                'message' => 'No se pudo actualizar el usuario'
+            ]);
+        }
+
+        exit;
+    }
+
+    public function deleteUser()
+    {
+        $id = $_POST['id_usuario'] ?? 0;
+
+        if ($id == 0) {
+            echo json_encode([
+                'response' => '01',
+                'message' => 'Usuario no válido'
+            ]);
+            exit;
+        }
+
+        $result = $this->model->delete($id);
+
+        if ($result) {
+            echo json_encode([
+                'response' => '00',
+                'message' => 'Usuario eliminado correctamente'
+            ]);
+        } else {
+            echo json_encode([
+                'response' => '01',
+                'message' => 'No se pudo eliminar el usuario. Puede tener pedidos asociados.'
             ]);
         }
 

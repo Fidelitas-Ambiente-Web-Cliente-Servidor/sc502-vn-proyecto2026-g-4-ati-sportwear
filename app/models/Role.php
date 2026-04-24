@@ -1,6 +1,6 @@
 <?php
 
-class Category
+class Role
 {
     private $conn;
 
@@ -11,31 +11,20 @@ class Category
 
     public function getAll()
     {
-        $stmt = $this->conn->prepare("SELECT id_categoria, nombre, descripcion
-            FROM categorias
-            ORDER BY id_categoria");
+        $stmt = $this->conn->prepare("SELECT id_rol, nombre, descripcion
+            FROM roles
+            ORDER BY id_rol");
 
         $stmt->execute();
 
         return $stmt->get_result();
     }
 
-    public function countAll()
-    {
-        $stmt = $this->conn->prepare("SELECT COUNT(*) AS total FROM categorias");
-        $stmt->execute();
-
-        $result = $stmt->get_result();
-        $row = $result->fetch_assoc();
-
-        return $row['total'];
-    }
-
     public function getById($id)
     {
-        $stmt = $this->conn->prepare("SELECT id_categoria, nombre, descripcion
-        FROM categorias
-        WHERE id_categoria = ?");
+        $stmt = $this->conn->prepare("SELECT id_rol, nombre, descripcion
+        FROM roles
+        WHERE id_rol = ?");
 
         $stmt->bind_param("i", $id);
         $stmt->execute();
@@ -47,7 +36,7 @@ class Category
 
     public function create($nombre, $descripcion)
     {
-        $stmt = $this->conn->prepare("INSERT INTO categorias
+        $stmt = $this->conn->prepare("INSERT INTO roles
             (nombre, descripcion)
         VALUES (?, ?)");
 
@@ -58,10 +47,10 @@ class Category
 
     public function update($id, $nombre, $descripcion)
     {
-        $stmt = $this->conn->prepare("UPDATE categorias
+        $stmt = $this->conn->prepare("UPDATE roles
         SET nombre = ?,
             descripcion = ?
-        WHERE id_categoria = ?");
+        WHERE id_rol = ?");
 
         $stmt->bind_param("ssi", $nombre, $descripcion, $id);
 
@@ -70,7 +59,7 @@ class Category
 
     public function delete($id)
     {
-        $stmt = $this->conn->prepare("DELETE FROM categorias WHERE id_categoria = ?");
+        $stmt = $this->conn->prepare("DELETE FROM roles WHERE id_rol = ?");
         $stmt->bind_param("i", $id);
 
         return $stmt->execute();

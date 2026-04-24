@@ -223,3 +223,10 @@ table td {
 .listaPanel li {
     margin-bottom: 10px;
 }
+
+.imgAdminProducto {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+}
