@@ -8,6 +8,14 @@ $(function () {
     let search = "";
     let category = "";
 
+    function parseData(data) {
+        if (typeof data === "string") {
+            data = JSON.parse(data);
+        }
+
+        return data;
+    }
+
     function cargarCategorias() {
 
         $.get(urlBase,
@@ -16,7 +24,7 @@ $(function () {
             },
             function (data, status) {
 
-                data = JSON.parse(data);
+                data = parseData(data);
 
                 let html = `<button class="btn btn-outline-dark btnCategoria" data-id="">Todas</button>`;
 
@@ -45,13 +53,14 @@ $(function () {
             },
             function (data, status) {
 
-                data = JSON.parse(data);
+                data = parseData(data);
 
                 let html = "";
 
                 if (data.length > 0) {
 
                     data.forEach(function (product) {
+                        let agotado = product.estado === "agotado" || parseInt(product.cantidad) <= 0;
 
                         html += `
                             <div class="col-md-4 col-lg-3">
@@ -64,13 +73,18 @@ $(function () {
 
                                     <p class="precio">₡${product.precio}</p>
 
+                                    <p>
+                                        ${agotado ? "Agotado" : "Disponibles: " + product.cantidad}
+                                    </p>
+
                                     <div class="d-grid gap-2">
 
                                         <button class="btn btn-outline-dark btn-sm btnVerDetalle" data-id="${product.id_producto}">
                                             Ver detalle
                                         </button>
 
-                                        <button class="btn btn-dark btn-sm btnAgregarCarrito" data-id="${product.id_producto}">
+                                        <button class="btn btn-dark btn-sm btnAgregarCarrito" 
+                                            data-id="${product.id_producto}" ${agotado ? "disabled" : ""}>
                                             Agregar al carrito
                                         </button>
 
@@ -107,6 +121,51 @@ $(function () {
     $(document).on("click", ".btnVerDetalle", function () {
         let id = $(this).data("id");
         window.location = "index.php?page=producto&id=" + id;
+    });
+
+    $(document).on("click", ".btnAgregarCarrito", function () {
+        let id = $(this).data("id");
+
+        $.post(urlBase,
+            {
+                option: "agregar_carrito",
+                id_producto: id,
+                cantidad: 1
+            },
+            function (data, status) {
+
+                data = parseData(data);
+
+                alert(data.message);
+
+                if (data.response === "00" && typeof actualizarBadgeCarrito === "function") {
+                    actualizarBadgeCarrito();
+                }
+            }
+        );
+    });
+
+    $(document).on("click", ".btnAgregarCarritoDetalle", function () {
+        let id = $(this).data("id");
+        let cantidad = $("#cantidadDetalle").val();
+
+        $.post(urlBase,
+            {
+                option: "agregar_carrito",
+                id_producto: id,
+                cantidad: cantidad
+            },
+            function (data, status) {
+
+                data = parseData(data);
+
+                alert(data.message);
+
+                if (data.response === "00" && typeof actualizarBadgeCarrito === "function") {
+                    actualizarBadgeCarrito();
+                }
+            }
+        );
     });
 
 });

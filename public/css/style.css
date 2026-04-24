@@ -24,6 +24,9 @@ nav a {
     text-decoration: none;
     color: black;
     font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
 }
 
 nav a:hover {
@@ -229,4 +232,45 @@ table td {
     height: 60px;
     object-fit: cover;
     border-radius: 4px;
+}
+
+.link-carrito {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.badge-carrito {
+    background: black;
+    color: white;
+    font-size: 12px;
+    padding: 2px 7px;
+    border-radius: 50%;
+    margin-left: 4px;
+}
+
+.badge-carrito {
+    background: black;
+    color: white;
+    font-size: 11px;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.usuario-navbar {
+    background: black;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 18px;
+    font-size: 13px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    line-height: 1;
 }

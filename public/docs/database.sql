@@ -69,7 +69,7 @@ CREATE TABLE pedidos (
     id_usuario INT NOT NULL,
     fecha DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     total DECIMAL(10,2) NOT NULL,
-    estado ENUM('enviado', 'procesando', 'entregado', 'cancelado') NOT NULL DEFAULT 'enviado',
+    estado ENUM('enviado', 'procesando', 'entregado', 'cancelado') NOT NULL DEFAULT 'procesando',
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario)
 );
  
