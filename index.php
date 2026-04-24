@@ -6,7 +6,7 @@ require_once './app/controllers/HomeController.php';
 require_once './app/controllers/UserController.php';
 require_once './app/controllers/ProductController.php';
 require_once './app/controllers/CategoryController.php';
-//require_once './app/controllers/CartController.php';
+require_once './app/controllers/CartController.php';
 require_once './app/controllers/OrderController.php';
 require_once './app/controllers/RoleController.php';
 require_once './app/controllers/AdminController.php';

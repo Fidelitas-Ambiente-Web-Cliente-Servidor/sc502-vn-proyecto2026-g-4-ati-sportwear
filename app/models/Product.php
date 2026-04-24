@@ -51,14 +51,15 @@ class Product
 
     public function getById($id)
     {
-        $stmt = $this->conn->prepare("SELECT
-        p.id_producto,
-        p.nombre,
-        p.descripcion,
-        p.precio,
-        p.cantidad,
-        p.imagen,
-        c.nombre AS categoria
+        $stmt = $this->conn->prepare("SELECT 
+            p.id_producto,
+            p.nombre,
+            p.descripcion,
+            p.precio,
+            p.cantidad,
+            p.imagen,
+            p.estado,
+            c.nombre AS categoria
         FROM productos p
         INNER JOIN categorias c ON p.id_categoria = c.id_categoria
         WHERE p.id_producto = ?");
