@@ -3,6 +3,8 @@
 require_once './config/database.php';
 require_once './app/models/Order.php';
 require_once './app/models/User.php';
+require_once './app/models/Product.php';
+require_once './app/models/Category.php';
 
 class AdminController
 {
@@ -49,25 +51,46 @@ class AdminController
         require_once './app/views/admin/roles.php';
     }
 
+    //Para esta función se utilizó apoyo de IA.
     public function dashboardJson()
     {
         header('Content-Type: application/json');
 
         $orderModel = new Order($this->db);
         $userModel = new User($this->db);
+        $productModel = new Product($this->db);
+        $categoryModel = new Category($this->db);
 
-        $usuarios = count($userModel->getAllAdmin());
+        $usuarios = $userModel->countAll();
+        $productos = $productModel->countAll();
+        $categorias = $categoryModel->countAll();
+
         $pedidos = $orderModel->countAll();
-        $pedidosProcesando = $orderModel->countByStatus('procesando');
-        $pedidosCancelados = $orderModel->countByStatus('cancelado');
+        $enviados = $orderModel->countByStatus('enviado');
+        $procesando = $orderModel->countByStatus('procesando');
+        $entregados = $orderModel->countByStatus('entregado');
+        $cancelados = $orderModel->countByStatus('cancelado');
+
+        $porcentajeEnviados = $pedidos > 0 ? ($enviados / $pedidos) * 100 : 0;
+        $porcentajeProcesando = $pedidos > 0 ? ($procesando / $pedidos) * 100 : 0;
+        $porcentajeEntregados = $pedidos > 0 ? ($entregados / $pedidos) * 100 : 0;
+        $porcentajeCancelados = $pedidos > 0 ? ($cancelados / $pedidos) * 100 : 0;
 
         echo json_encode([
             'response' => '00',
             'data' => [
                 'usuarios' => $usuarios,
+                'productos' => $productos,
+                'categorias' => $categorias,
                 'pedidos' => $pedidos,
-                'procesando' => $pedidosProcesando,
-                'cancelados' => $pedidosCancelados
+                'enviados' => $enviados,
+                'procesando' => $procesando,
+                'entregados' => $entregados,
+                'cancelados' => $cancelados,
+                'porcentaje_enviados' => $porcentajeEnviados,
+                'porcentaje_procesando' => $porcentajeProcesando,
+                'porcentaje_entregados' => $porcentajeEntregados,
+                'porcentaje_cancelados' => $porcentajeCancelados
             ]
         ]);
         exit;

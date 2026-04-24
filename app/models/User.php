@@ -52,53 +52,54 @@ class User
 
     public function getAllAdmin()
     {
-        $sql = "SELECT 
-                    u.id_usuario,
-                    u.nombre,
-                    u.apellidos,
-                    u.email,
-                    u.estado,
-                    u.id_rol,
-                    r.nombre AS rol
-                FROM usuarios u
-                INNER JOIN roles r ON u.id_rol = r.id_rol
-                ORDER BY u.id_usuario DESC";
+        $stmt = $this->conn->prepare("SELECT 
+            u.id_usuario,
+            u.nombre,
+            u.apellidos,
+            u.email,
+            u.estado,
+            u.id_rol,
+            r.nombre AS rol
+        FROM usuarios u
+        INNER JOIN roles r ON u.id_rol = r.id_rol
+        ORDER BY u.id_usuario");
 
-        $result = $this->conn->query($sql);
+        $stmt->execute();
 
-        $users = [];
-        while ($row = $result->fetch_assoc()) {
-            $users[] = $row;
-        }
-
-        return $users;
+        return $stmt->get_result();
     }
 
-    public function getById($idUsuario)
+    public function getById($id)
     {
         $stmt = $this->conn->prepare("SELECT 
-                    id_usuario,
-                    nombre,
-                    apellidos,
-                    email,
-                    estado,
-                    id_rol
-                FROM usuarios
-                WHERE id_usuario = ?");
+            id_usuario,
+            nombre,
+            apellidos,
+            email,
+            id_rol,
+            estado
+        FROM usuarios
+        WHERE id_usuario = ?");
 
-        $stmt->bind_param("i", $idUsuario);
+        $stmt->bind_param("i", $id);
         $stmt->execute();
 
         $result = $stmt->get_result();
+
         return $result->fetch_assoc();
     }
 
-    public function updateAdmin($idUsuario, $nombre, $apellidos, $email)
+    public function updateAdmin($id, $nombre, $apellidos, $email, $idRol, $estado)
     {
         $stmt = $this->conn->prepare("UPDATE usuarios
-                SET nombre = ?, apellidos = ?, email = ?
-                WHERE id_usuario = ?");
-        $stmt->bind_param("sssi", $nombre, $apellidos, $email, $idUsuario);
+        SET nombre = ?,
+            apellidos = ?,
+            email = ?,
+            id_rol = ?,
+            estado = ?
+        WHERE id_usuario = ?");
+
+        $stmt->bind_param("sssisi", $nombre, $apellidos, $email, $idRol, $estado, $id);
 
         return $stmt->execute();
     }
@@ -130,5 +131,35 @@ class User
         }
 
         return $roles;
+    }
+
+    public function createAdmin($nombre, $apellidos, $email, $password, $idRol, $estado)
+    {
+        $stmt = $this->conn->prepare("INSERT INTO usuarios
+            (nombre, apellidos, email, password, id_rol, estado)
+        VALUES (?, ?, ?, ?, ?, ?)");
+
+        $stmt->bind_param("ssssis", $nombre, $apellidos, $email, $password, $idRol, $estado);
+
+        return $stmt->execute();
+    }
+
+    public function delete($id)
+    {
+        $stmt = $this->conn->prepare("DELETE FROM usuarios WHERE id_usuario = ?");
+        $stmt->bind_param("i", $id);
+
+        return $stmt->execute();
+    }
+
+    public function countAll()
+    {
+        $stmt = $this->conn->prepare("SELECT COUNT(*) AS total FROM usuarios");
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+
+        return $row['total'];
     }
 }

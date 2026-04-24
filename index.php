@@ -8,7 +8,7 @@ require_once './app/controllers/ProductController.php';
 require_once './app/controllers/CategoryController.php';
 //require_once './app/controllers/CartController.php';
 require_once './app/controllers/OrderController.php';
-//require_once './app/controllers/RoleController.php';
+require_once './app/controllers/RoleController.php';
 require_once './app/controllers/AdminController.php';
 
 $page = $_GET['page'] ?? 'home';
@@ -229,6 +229,7 @@ if (!empty($option)) {
         case 'crear_categoria':
         case 'editar_categoria':
         case 'eliminar_categoria':
+        case 'categoria_detalle_json':
             if (!isAdmin()) {
                 header('Content-Type: application/json');
                 echo json_encode([
@@ -256,14 +257,17 @@ if (!empty($option)) {
                 case 'eliminar_categoria':
                     $controller->delete();
                     break;
+                case 'categoria_detalle_json':
+                    $controller->getDetailJson();
+                    break;
             }
             break;
 
         case 'admin_usuarios_json':
-        case 'cambiar_rol_usuario':
-        case 'cambiar_estado_usuario':
         case 'usuario_detalle_json':
+        case 'crear_usuario':
         case 'editar_usuario':
+        case 'eliminar_usuario':
             if (!isAdmin()) {
                 header('Content-Type: application/json');
                 echo json_encode([
@@ -280,20 +284,20 @@ if (!empty($option)) {
                     $controller->getUsersJson();
                     break;
 
-                case 'cambiar_rol_usuario':
-                    $controller->changeRole();
-                    break;
-
-                case 'cambiar_estado_usuario':
-                    $controller->changeStatus();
-                    break;
-
                 case 'usuario_detalle_json':
                     $controller->getUserDetailJson();
                     break;
 
+                case 'crear_usuario':
+                    $controller->createUser();
+                    break;
+
                 case 'editar_usuario':
                     $controller->updateUser();
+                    break;
+
+                case 'eliminar_usuario':
+                    $controller->deleteUser();
                     break;
             }
             break;

@@ -1,9 +1,9 @@
 <?php
 
 require_once './config/database.php';
-require_once './app/models/Category.php';
+require_once './app/models/Role.php';
 
-class CategoryController
+class RoleController
 {
     private $model;
 
@@ -11,30 +11,30 @@ class CategoryController
     {
         $database = new Database();
         $db = $database->connect();
-        $this->model = new Category($db);
+        $this->model = new Role($db);
     }
 
     public function getAllJson()
     {
         $result = $this->model->getAll();
 
-        $categories = [];
+        $roles = [];
 
         while ($row = $result->fetch_assoc()) {
-            $categories[] = $row;
+            $roles[] = $row;
         }
 
-        echo json_encode($categories);
+        echo json_encode($roles);
         exit;
     }
 
-    public function getDetailJson()
+    public function getRoleDetailJson()
     {
         $id = $_GET['id'] ?? 0;
 
-        $category = $this->model->getById($id);
+        $role = $this->model->getById($id);
 
-        echo json_encode($category);
+        echo json_encode($role);
         exit;
     }
 
@@ -56,12 +56,12 @@ class CategoryController
         if ($result) {
             echo json_encode([
                 'response' => '00',
-                'message' => 'Categoría creada correctamente'
+                'message' => 'Rol creado correctamente'
             ]);
         } else {
             echo json_encode([
                 'response' => '01',
-                'message' => 'No se pudo crear la categoría'
+                'message' => 'No se pudo crear el rol'
             ]);
         }
 
@@ -70,7 +70,7 @@ class CategoryController
 
     public function update()
     {
-        $id = $_POST['id_categoria'] ?? 0;
+        $id = $_POST['id_rol'] ?? 0;
         $nombre = trim($_POST['nombre'] ?? '');
         $descripcion = trim($_POST['descripcion'] ?? '');
 
@@ -87,12 +87,12 @@ class CategoryController
         if ($result) {
             echo json_encode([
                 'response' => '00',
-                'message' => 'Categoría actualizada correctamente'
+                'message' => 'Rol actualizado correctamente'
             ]);
         } else {
             echo json_encode([
                 'response' => '01',
-                'message' => 'No se pudo actualizar la categoría'
+                'message' => 'No se pudo actualizar el rol'
             ]);
         }
 
@@ -101,12 +101,12 @@ class CategoryController
 
     public function delete()
     {
-        $id = $_POST['id_categoria'] ?? 0;
+        $id = $_POST['id_rol'] ?? 0;
 
         if ($id == 0) {
             echo json_encode([
                 'response' => '01',
-                'message' => 'Categoría no válida'
+                'message' => 'Rol no válido'
             ]);
             exit;
         }
@@ -116,12 +116,12 @@ class CategoryController
         if ($result) {
             echo json_encode([
                 'response' => '00',
-                'message' => 'Categoría eliminada correctamente'
+                'message' => 'Rol eliminado correctamente'
             ]);
         } else {
             echo json_encode([
                 'response' => '01',
-                'message' => 'No se pudo eliminar la categoría. Puede estar asociada a productos.'
+                'message' => 'No se pudo eliminar el rol. Puede estar asociado a usuarios.'
             ]);
         }
 

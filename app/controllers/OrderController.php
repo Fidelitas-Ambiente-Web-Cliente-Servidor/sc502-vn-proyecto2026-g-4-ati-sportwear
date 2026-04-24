@@ -16,9 +16,13 @@ class OrderController
 
     public function getAllOrdersJson()
     {
-        header('Content-Type: application/json');
+        $result = $this->model->getAllAdmin();
 
-        $orders = $this->model->getAllAdmin();
+        $orders = [];
+
+        while ($row = $result->fetch_assoc()) {
+            $orders[] = $row;
+        }
 
         echo json_encode([
             'response' => '00',
@@ -29,50 +33,34 @@ class OrderController
 
     public function getOrderDetailJson()
     {
-        header('Content-Type: application/json');
+        $idPedido = $_GET['id_pedido'] ?? 0;
 
-        $idPedido = intval($_POST['id_pedido'] ?? 0);
+        $header = $this->model->getHeaderById($idPedido);
+        $result = $this->model->getDetail($idPedido);
 
-        if ($idPedido <= 0) {
-            echo json_encode([
-                'response' => '01',
-                'message' => 'Pedido inválido'
-            ]);
-            exit;
-        }
+        $details = [];
 
-        $order = $this->model->getById($idPedido);
-        $detail = $this->model->getDetail($idPedido);
-
-        if (!$order) {
-            echo json_encode([
-                'response' => '01',
-                'message' => 'Pedido no encontrado'
-            ]);
-            exit;
+        while ($row = $result->fetch_assoc()) {
+            $details[] = $row;
         }
 
         echo json_encode([
             'response' => '00',
-            'pedido' => $order,
-            'detalle' => $detail
+            'pedido' => $header,
+            'detalle' => $details
         ]);
         exit;
     }
 
     public function changeOrderStatus()
     {
-        header('Content-Type: application/json');
+        $idPedido = $_POST['id_pedido'] ?? 0;
+        $estado = $_POST['estado'] ?? '';
 
-        $idPedido = intval($_POST['id_pedido'] ?? 0);
-        $estado = trim($_POST['estado'] ?? '');
-
-        $estadosPermitidos = ['enviado', 'procesando', 'entregado', 'cancelado'];
-
-        if ($idPedido <= 0 || !in_array($estado, $estadosPermitidos)) {
+        if ($idPedido == 0 || $estado == '') {
             echo json_encode([
                 'response' => '01',
-                'message' => 'Datos inválidos'
+                'message' => 'Datos incompletos'
             ]);
             exit;
         }
